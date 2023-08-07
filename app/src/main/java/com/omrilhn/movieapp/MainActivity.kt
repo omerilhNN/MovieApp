@@ -42,6 +42,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.omrilhn.movieapp.navigation.MovieNavigation
 import com.omrilhn.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -49,7 +50,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApp {
-                MainContent()
+                MovieNavigation()
             }
         }
     }
@@ -58,43 +59,19 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
     MovieAppTheme {
-        Scaffold(topBar = {
-            Surface(shadowElevation = 5.dp) {
-                TopAppBar(title = {Text(text = "MovieAppCompose") },
-                    colors = TopAppBarDefaults.smallTopAppBarColors(Color.Magenta),
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .fillMaxWidth())
-            }
-        }) {paddingValues ->
-           Log.d("Padding","$paddingValues")
-        }
+        content()
     }
 }
-@Composable
-fun MainContent(movieList: List<String> = listOf(
-    "Avatar",
-    "LOTR",
-    "Harry Potter",
-    "Pianist")){
 
-    Column(modifier = Modifier.padding(12.dp)){
-        LazyColumn{//Efficient way to show items
-            items(items = movieList){
-                MovieRow(movie = it)
-            }
-        }
-    }
-
-}
 @Composable
-fun MovieRow(movie:String){
+fun MovieRow(movie:String,onItemClick: (String) ->Unit = {}){
     Card(modifier = Modifier
         .padding(4.dp)
         .fillMaxWidth()
         .height(130.dp)
         .clickable {
-                   
+            onItemClick(movie)
+
         },
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
         elevation = CardDefaults.cardElevation(6.dp)){
@@ -119,6 +96,6 @@ fun MovieRow(movie:String){
 @Composable
 fun DefaultPreview() {
     MyApp {
-        MainContent()
+        MovieNavigation()
     }
 }
