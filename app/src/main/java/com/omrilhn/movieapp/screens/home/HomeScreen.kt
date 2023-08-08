@@ -48,8 +48,9 @@ fun MainContent(navController: NavController,movieList: List<String> = listOf(
         LazyColumn{//Efficient way to show items
             items(items = movieList){
                 MovieRow(movie = it){movie->
-                    navController.navigate(route = MovieScreens.DetailsScreen.name)//GO TO THAT SPECIFIC SCREEN
-                //Log.d("TAG","MainContent: $movie")
+                    navController.navigate(route = MovieScreens.DetailsScreen.name+"/$movie")
+                //GO TO THAT SPECIFIC SCREEN
+                 // Always use '/' because it works like a link
                 }
             }
         }
