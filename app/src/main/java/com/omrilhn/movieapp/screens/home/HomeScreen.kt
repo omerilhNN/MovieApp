@@ -27,7 +27,7 @@ fun HomeScreen(navController: NavController)
     Scaffold(topBar = {
         Surface(shadowElevation = 5.dp) {
             TopAppBar(title = { Text(text = "MovieAppCompose") },
-                colors = TopAppBarDefaults.smallTopAppBarColors(Color.Magenta),
+                colors = TopAppBarDefaults.smallTopAppBarColors(Color.Transparent),
                 modifier = Modifier
                     .padding(10.dp)
                     .fillMaxWidth())
