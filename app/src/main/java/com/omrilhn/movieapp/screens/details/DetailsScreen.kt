@@ -40,7 +40,7 @@ fun DetailsScreen(navController: NavController, movieData: String?){
             TopAppBar(title = { Text(text = "MovieAppCompose") },
                 colors = TopAppBarDefaults.smallTopAppBarColors(Color.Magenta),
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(1.dp)
                     .fillMaxWidth())
             Row {
                 Icon(imageVector = Icons.Default.ArrowBack,
@@ -50,7 +50,6 @@ fun DetailsScreen(navController: NavController, movieData: String?){
                     } )
                 Spacer(modifier = Modifier.width(100.dp))
 
-                Text(text = "movies")
             }
         }
     }) {paddingValues ->
